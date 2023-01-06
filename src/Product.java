@@ -7,6 +7,13 @@ public class Product {
         this.price = price;
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public int getPrice() {
+        return price;
+    }
 
     @Override
     public String toString() {

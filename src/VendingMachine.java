@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class VendingMachine {
-    List<Product> products;
+    private List<Product> products;
     private String[]typeProduct = new String[]{"Candy", "Snickers", "Apple", "Water", "Soda"};
 
 
@@ -30,5 +30,13 @@ public class VendingMachine {
     private void printException(){
         System.out.println("Enter correct data!\n" +
                 "Try again!");
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 }
