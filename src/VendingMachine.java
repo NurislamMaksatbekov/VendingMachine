@@ -1,21 +1,34 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class VendingMachine {
     List<Product> products;
+    private String[]typeProduct = new String[]{"Candy", "Snickers", "Apple", "Water", "Soda"};
+
 
     public VendingMachine() {
         this.products = createProduct();
     }
 
+
     public List<Product> createProduct(){
-        String[]typeProduct = new String[]{"Candy", "Snickers", "Apple", "Water", "Soda"};
         List<Product> products = new ArrayList<>();
         for (int i = 0; i < typeProduct.length; i++) {
             String type = typeProduct[i];
             products.add(new Product(type, new Random().nextInt(61)+20));
         }
         return products;
+    }
+    public void chooseProduct(){
+        try {
+            int choose = new Scanner(System.in).nextInt(typeProduct.length);
+            System.out.println(products.get(choose));
+        }catch (InputMismatchException | IndexOutOfBoundsException e){
+            printException();
+            chooseProduct();
+        }
+    }
+    private void printException(){
+        System.out.println("Enter correct data!\n" +
+                "Try again!");
     }
 }
