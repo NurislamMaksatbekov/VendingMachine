@@ -19,7 +19,7 @@ public class Customer {
     public void printProducts(){
         for (int i = 0; i < machine.getProducts().size(); i++) {
             if(getCoins() > machine.getProducts().get(i).getPrice()) {
-                System.out.printf("%s - Type: %-9s -- >   Price: %s\n", i, machine.getProducts().get(i).getType(),
+                System.out.printf("(%s) - Type: %-9s -- >   Price: %s\n", i, machine.getProducts().get(i).getType(),
                         machine.getProducts().get(i).getPrice());
             }
         }
