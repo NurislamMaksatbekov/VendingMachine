@@ -3,9 +3,7 @@ public class Main {
         VendingMachine machine = new VendingMachine();
 //        machine.getProducts().forEach(System.out::println);
 //        machine.chooseProduct();
-        Customer customer = new Customer();
-
-        customer.printProducts();
+        machine.printProducts();
         machine.chooseProduct();
     }
 }

@@ -3,6 +3,7 @@ import java.util.*;
 public class VendingMachine {
     private List<Product> products;
     private String[]typeProduct = new String[]{"Candy", "Snickers", "Apple", "Water", "Soda"};
+    Customer customer = new Customer();
 
 
     public VendingMachine() {
@@ -21,7 +22,7 @@ public class VendingMachine {
     public void chooseProduct(){
         try {
             int choose = new Scanner(System.in).nextInt(typeProduct.length);
-            System.out.println(products.get(choose));
+            System.out.println("You chose: " + products.get(choose));
         }catch (InputMismatchException | IndexOutOfBoundsException e){
             printException();
             chooseProduct();
@@ -30,6 +31,14 @@ public class VendingMachine {
     private void printException(){
         System.out.println("Enter correct data!\n" +
                 "Try again!");
+    }
+    public void printProducts(){
+        for (int i = 0; i < products.size(); i++) {
+            if(customer.getCoins() >= products.get(i).getPrice()) {
+                System.out.printf("(%s) - Type: %-9s -- >   Price: %s\n", i, products.get(i).getType(),
+                        products.get(i).getPrice());
+            }
+        }
     }
 
     public List<Product> getProducts() {
