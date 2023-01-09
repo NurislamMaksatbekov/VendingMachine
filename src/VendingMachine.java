@@ -53,10 +53,6 @@ public class VendingMachine {
             if(customer.getCoins() >= products.get(i).getPrice()) {
                 System.out.printf("(%s) - Type: %-9s -- >   Price: %s\n", i, products.get(i).getType(),
                         products.get(i).getPrice());
-            } else  {
-                System.out.println("You don;t have enough money for buy product!\n" +
-                        "Put coins again!");
-                customer.putCoins();
             }
         }
     }
@@ -65,8 +61,7 @@ public class VendingMachine {
         availableProducts();
         System.out.println("Your balance " + customer.getCoins());
         System.out.println("(1) Put coins\n" +
-                "(2) Buy products\n" +
-                "(3) Quit");
+                "(2) Quit");
         System.out.print("Choose action: ");
         try{
             int choose = new Scanner(System.in).nextInt();
@@ -74,17 +69,14 @@ public class VendingMachine {
                 case 1:
                     customer.putCoins();
                     System.out.println("Your balance: " + customer.getCoins());
-                    chooseAction();
-                    break;
-                case 2:
                     printProducts();
                     chooseProduct();
                     chooseAction();
                     break;
-                case 3:
+                case 2:
                     break;
             }
-            if(choose > 3 || choose <= 0){
+            if(choose > 2 || choose <= 0){
                 throw new InputMismatchException();
             }
         }catch (InputMismatchException e){
