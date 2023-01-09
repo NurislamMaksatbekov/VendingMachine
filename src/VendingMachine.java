@@ -3,8 +3,7 @@ import java.util.*;
 public class VendingMachine {
     private List<Product> products;
     private String[]typeProduct = new String[]{"Candy", "Snickers", "Apple", "Water", "Soda"};
-     private static final Customer customer = new Customer();
-
+    private static final Customer customer = new Customer();
 
     public VendingMachine() {
         this.products = createProduct();
@@ -83,13 +82,5 @@ public class VendingMachine {
             printException();
             chooseAction();
         }
-    }
-
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
     }
 }

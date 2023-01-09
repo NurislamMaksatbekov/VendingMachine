@@ -1,5 +1,4 @@
 import java.util.Scanner;
-import java.util.function.Consumer;
 
 public class Customer {
     private int coins;
