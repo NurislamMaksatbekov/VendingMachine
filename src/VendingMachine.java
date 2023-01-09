@@ -3,7 +3,7 @@ import java.util.*;
 public class VendingMachine {
     private List<Product> products;
     private String[]typeProduct = new String[]{"Candy", "Snickers", "Apple", "Water", "Soda"};
-    Customer customer = new Customer();
+     private static final Customer customer = new Customer();
 
 
     public VendingMachine() {
@@ -20,24 +20,70 @@ public class VendingMachine {
         return products;
     }
     public void chooseProduct(){
-        try {
-            int choose = new Scanner(System.in).nextInt(typeProduct.length);
-            System.out.println("You chose: " + products.get(choose));
-        }catch (InputMismatchException | IndexOutOfBoundsException e){
-            printException();
-            chooseProduct();
-        }
+            try {
+                int choose = new Scanner(System.in).nextInt(typeProduct.length);
+                if(products.get(choose).getPrice() <= customer.getCoins()) {
+                    System.out.println("You bought: " + products.get(choose));
+                } else if (products.get(choose).getPrice() > customer.getCoins()){
+                    printException();
+                    chooseProduct();
+                }
+            } catch (InputMismatchException | IndexOutOfBoundsException e) {
+                printException();
+                chooseProduct();
+            }
+
+
     }
     private void printException(){
         System.out.println("Enter correct data!\n" +
                 "Try again!");
     }
+    public void availableProducts() {
+        System.out.println("Available products in the machine!");
+        for (int i = 0; i < products.size(); i++) {
+            System.out.printf("(%s) - Type: %-9s -- >   Price: %s\n", i, products.get(i).getType(),
+                    products.get(i).getPrice());
+        }
+    }
     public void printProducts(){
+        System.out.println("Available products for your balance!");
         for (int i = 0; i < products.size(); i++) {
             if(customer.getCoins() >= products.get(i).getPrice()) {
                 System.out.printf("(%s) - Type: %-9s -- >   Price: %s\n", i, products.get(i).getType(),
                         products.get(i).getPrice());
             }
+        }
+    }
+
+    public void chooseAction(){
+        availableProducts();
+        System.out.println("Your balance " + customer.getCoins());
+        System.out.println("(1) Put coins\n" +
+                "(2) Buy products\n" +
+                "(3) Quit");
+        try{
+            int choose = new Scanner(System.in).nextInt();
+            switch (choose){
+                case 1:
+                    customer.putCoins();
+                    System.out.println("Your balance: " + customer.getCoins());
+                    chooseAction();
+                    break;
+                case 2:
+                    printProducts();
+                    chooseProduct();
+                    chooseAction();
+                    break;
+                case 3:
+                    break;
+            }
+            if(choose > 3 || choose <= 0){
+                throw new InputMismatchException();
+            }
+        }catch (InputMismatchException e){
+            printException();
+            chooseAction();
         }
     }
 

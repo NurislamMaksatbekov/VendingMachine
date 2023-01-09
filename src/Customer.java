@@ -1,22 +1,24 @@
-import java.util.List;
-import java.util.Random;
 import java.util.Scanner;
+import java.util.function.Consumer;
 
 public class Customer {
     private int coins;
 
     public Customer() {
-        this.coins = putCoins();
+        this.coins = 0;
     }
 
-    public int putCoins(){
+    public void putCoins(){
         System.out.print("Put coins in the machine: ");
         int money = new Scanner(System.in).nextInt();
-        return money;
+        setCoins(getCoins() + money);
     }
-
 
     public int getCoins() {
         return coins;
+    }
+
+    public void setCoins(int coins) {
+        this.coins = coins;
     }
 }
