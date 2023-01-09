@@ -24,6 +24,7 @@ public class VendingMachine {
                 int choose = new Scanner(System.in).nextInt(typeProduct.length);
                 if(products.get(choose).getPrice() <= customer.getCoins()) {
                     System.out.println("You bought: " + products.get(choose));
+                    customer.setCoins(customer.getCoins() - products.get(choose).getPrice());
                 } else if (products.get(choose).getPrice() > customer.getCoins()){
                     printException();
                     chooseProduct();
@@ -52,6 +53,10 @@ public class VendingMachine {
             if(customer.getCoins() >= products.get(i).getPrice()) {
                 System.out.printf("(%s) - Type: %-9s -- >   Price: %s\n", i, products.get(i).getType(),
                         products.get(i).getPrice());
+            } else  {
+                System.out.println("You don;t have enough money for buy product!\n" +
+                        "Put coins again!");
+                customer.putCoins();
             }
         }
     }
@@ -62,6 +67,7 @@ public class VendingMachine {
         System.out.println("(1) Put coins\n" +
                 "(2) Buy products\n" +
                 "(3) Quit");
+        System.out.print("Choose action: ");
         try{
             int choose = new Scanner(System.in).nextInt();
             switch (choose){
